@@ -150,3 +150,31 @@
     border-left: 4px solid var(--bronze) !important;
   }
   
+  /* ============================
+   Fix text visibility in inputs
+   ============================ */
+section[data-testid="stSidebar"] input,
+section[data-testid="stSidebar"] textarea,
+section[data-testid="stSidebar"] select {
+  color: #ffffff !important;             /* make sidebar input text white */
+  background: rgba(255, 255, 255, 0.15) !important; /* soft contrast background */
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+}
+
+section[data-testid="stSidebar"] label {
+  color: #ffffff !important;             /* labels white */
+}
+
+/* Fix file uploader text */
+[data-testid="stFileUploader"] div,
+[data-testid="stFileUploader"] span,
+[data-testid="stFileUploader"] label {
+  color: var(--text) !important;         /* dark readable text on cream bg */
+}
+
+/* Fix "Browse files" button text */
+[data-testid="stFileUploader"] button {
+  color: #ffffff !important;             /* white text */
+  background: var(--bronze) !important;  /* bronze button */
+  border: none !important;
+}
