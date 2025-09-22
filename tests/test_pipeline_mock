@@ -1,0 +1,64 @@
+import types
+from core import pipeline
+
+def test_run_pipeline_mocked(monkeypatch, tmp_path):
+    fake_audio = tmp_path / "a.wav"
+    fake_audio.write_bytes(b"RIFF....")  # placeholder
+
+    # ---- Fake whisperx API ----
+    fake_whisperx = types.SimpleNamespace()
+
+    class FakeModel:
+        def transcribe(self, path, language=None, batch_size=1):
+            return {"segments":[{"text":"hello"},{"text":"there"}], "language":"en"}
+
+    def fake_load_model(model_size, device, compute_type=None):
+        return FakeModel()
+
+    def fake_load_align_model(language_code, device):
+        return ("ALIGN_MODEL", {"lang": language_code})
+
+    def fake_align(segments, align_model, metadata, input_path, device, return_char_alignments=False):
+        return {"segments":[
+            {"start":0.0,"end":0.5,"text":"hello"},
+            {"start":0.6,"end":1.0,"text":"there"},
+        ]}
+
+    def fake_assign_word_speakers(diar, aligned):
+        return [
+            {"speaker":"SPEAKER_00","start":0.0,"end":0.5,"text":"hello"},
+            {"speaker":"SPEAKER_01","start":0.6,"end":1.0,"text":"there"},
+        ]
+
+    fake_whisperx.load_model = fake_load_model
+    fake_whisperx.load_align_model = fake_load_align_model
+    fake_whisperx.align = fake_align
+    fake_whisperx.assign_word_speakers = fake_assign_word_speakers
+
+    # Patch the module attribute looked up inside pipeline.run_pipeline
+    monkeypatch.setitem(pipeline.__dict__, "whisperx", fake_whisperx)
+
+    # ---- Fake torch.inference_mode ----
+    class DummyCtx:
+        def __enter__(self): return None
+        def __exit__(self, *args): return False
+    class FakeTorch(types.SimpleNamespace):
+        def inference_mode(self): return DummyCtx()
+    monkeypatch.setitem(pipeline.__dict__, "torch", FakeTorch())
+
+    # ---- Fake DiarizationPipeline ----
+    class FakeDP:
+        def __init__(self, use_auth_token, device): pass
+        def __call__(self, path): return {"diar":"ok"}
+    monkeypatch.setitem(pipeline.__dict__, "DiarizationPipeline", FakeDP)
+
+    words, turns = pipeline.run_pipeline(
+        input_path=str(fake_audio),
+        model_size="small",
+        device="cpu",
+        language=None,
+        hf_token="X",
+        diar_device="cpu",
+    )
+    assert len(words) == 2
+    assert len(turns) == 2 or len(turns) == 1  # depends on gap merging

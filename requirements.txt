@@ -1,3 +1,6 @@
 streamlit>=1.37
+torch==2.3.1
 pandas>=2.2
 numpy>=1.26
+soundfile>=0.12
+pydub>=0.25

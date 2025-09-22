@@ -1,0 +1,152 @@
+/* ============================
+   Brand palette + variables
+   ============================ */
+   :root {
+    /* Brand */
+    --oxford: #1C352D;   /* deep green (sidebar/header) */
+    --cream:  #F9F6EE;   /* paper background */
+    --bronze: #8B7355;   /* accents & buttons */
+  
+    /* Support */
+    --text: #000000;     /* readable body text */
+    --btn:  #8B7355;     /* button/Info accent (bronze) */
+    --muted: #e5ded1;    /* subtle borders */
+  }
+  
+  /* ============================
+     Global app surface + fonts
+     ============================ */
+  html, body, [data-testid="stAppViewContainer"] {
+    background: var(--cream) !important;
+    font-family: Georgia, "Times New Roman", serif !important;
+    color: var(--text) !important;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: Georgia, "Times New Roman", serif !important;
+    letter-spacing: 0.2px;
+  }
+  
+  /* Top header bar */
+  [data-testid="stHeader"] {
+    background: var(--oxford) !important;
+    border-bottom: 0 !important;
+    color: #fff !important;
+  }
+  
+  /* ============================
+     Sidebar
+     ============================ */
+  section[data-testid="stSidebar"] {
+    background: var(--oxford) !important;
+    color: #ffffff !important;
+  }
+  
+  section[data-testid="stSidebar"] * {
+    color: #ffffff !important;
+  }
+  
+  section[data-testid="stSidebar"] .stTextInput > div > div > input,
+  section[data-testid="stSidebar"] .stSelectbox > div > div,
+  section[data-testid="stSidebar"] .stPassword > div > div > input {
+    background: rgba(255,255,255,0.12) !important;
+    border: 1px solid rgba(255,255,255,0.25) !important;
+    color: #ffffff !important;
+    border-radius: 10px !important;
+  }
+  
+  /* ============================
+     Buttons
+     ============================ */
+  div.stButton > button,
+  .stDownloadButton button {
+    background: var(--bronze) !important;
+    color: #ffffff !important;
+    border: 0 !important;
+    border-radius: 12px !important;
+    padding: 0.5rem 1rem !important;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.12) !important;
+  }
+  
+  div.stButton > button:hover,
+  .stDownloadButton button:hover {
+    filter: brightness(1.05) !important;
+  }
+  
+  /* ============================
+     File uploader
+     ============================ */
+  [data-testid="stFileUploader"] section[data-testid="stFileUploaderDropzone"] {
+    background: #ffffff !important;
+    border: 2px dashed var(--bronze) !important;
+    border-radius: 12px !important;
+  }
+  
+  /* ============================
+     Inputs on main pane
+     ============================ */
+  .stTextInput > div > div > input,
+  .stSelectbox > div > div,
+  .stPassword > div > div > input,
+  .stTextArea textarea {
+    background: #ffffff !important;
+    border: 1px solid var(--muted) !important;
+    border-radius: 10px !important;
+  }
+  
+  /* ============================
+     Tables / dataframes
+     ============================ */
+  .stDataFrame, .stTable {
+    border-radius: 12px !important;
+    border: 1px solid var(--muted) !important;
+    background: #ffffff !important;
+  }
+  
+  /* ============================
+     Alerts (your original rules)
+     ============================ */
+  /* ---- Fix error/warning/info text visibility ---- */
+  .stAlert {
+    font-family: Georgia, "Times New Roman", serif !important;
+    border-radius: 6px !important;
+    padding: 0.6rem 0.8rem !important;
+    font-size: 0.95rem !important;
+    color: var(--text) !important;
+  }
+  
+  /* reset Streamlit's default low opacity */
+  .stAlert p,
+  .stAlert span,
+  .stAlert div {
+    color: var(--text) !important;
+    opacity: 1 !important;
+  }
+  
+  /* error (red background) */
+  .stAlert[data-baseweb="notification"][style*="rgb(255, 75, 75)"],
+  .stAlert[data-baseweb="notification"][style*="rgb(255,75,75)"] {
+    background: #ffe5e5 !important;
+    border-left: 4px solid #e11d48 !important; /* crimson */
+  }
+  
+  /* warning (yellow background) */
+  .stAlert[data-baseweb="notification"][style*="rgb(255, 247, 205)"],
+  .stAlert[data-baseweb="notification"][style*="rgb(255,247,205)"] {
+    background: #fff9db !important;
+    border-left: 4px solid #ca8a04 !important; /* golden */
+  }
+  
+  /* info (blue background) */
+  .stAlert[data-baseweb="notification"][style*="rgb(204, 228, 247)"],
+  .stAlert[data-baseweb="notification"][style*="rgb(204,228,247)"] {
+    background: #e0f2fe !important;
+    border-left: 4px solid var(--btn) !important;
+  }
+  
+  /* Fallback if Streamlit changes inline rgb(...) */
+  .stAlert[data-baseweb="notification"] {
+    background: #f7f7f7 !important;
+    border-left: 4px solid var(--bronze) !important;
+  }
+  
