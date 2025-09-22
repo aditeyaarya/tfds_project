@@ -22,6 +22,7 @@ The project is containerized with Docker, tested with Pytest, styled with a cust
 - Optionally save outputs to your Desktop  
 - Modern UI with Oxford green sidebar, cream background, and bronze buttons  
 
+**NOTE:** You need a HuggingFace Token to use the tool
 ---
 
 ## ⚙️ Setup
