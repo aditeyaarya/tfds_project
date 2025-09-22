@@ -1,4 +1,7 @@
+[![DockerHub](https://img.shields.io/docker/pulls/aditeyaarya/diarization-app.svg)](https://hub.docker.com/r/aditeyaarya/diarization-app)
+![Version](https://img.shields.io/badge/version-v0.1.0-blue)
 ![CI](https://github.com/aditeyaarya/tfds_project/actions/workflows/ci.yml/badge.svg)
+
 **Docker Link:** https://hub.docker.com/r/aditeyaarya/diarization-app
 # 🏛️ Transcription and Diarization Tool
 
