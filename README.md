@@ -32,9 +32,10 @@ pip install -r requirements.txt
 ```
 
 **Run the app:**
-streamlit run app/app.py
-
-
 ```bash
-git clone https://github.com/aditeyaarya/tfds_project.git
+streamlit run app/app.py
+```
+
+**git clone:** https://github.com/aditeyaarya/tfds_project.git
+```bash
 cd tfds_project
