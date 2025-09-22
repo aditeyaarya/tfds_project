@@ -1,0 +1,6 @@
+[theme]
+base = "light"          # important: disables dark mode
+primaryColor = "#8B7355"  # bronze accent
+backgroundColor = "#F9F6EE" # cream
+secondaryBackgroundColor = "#1C352D" # oxford (sidebar)
+textColor = "#000000"
