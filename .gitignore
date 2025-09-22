@@ -8,3 +8,7 @@ dist/
 build/
 *.egg-info/
 .DS_Store
+
+# Track only the Streamlit config file
+.streamlit/*
+!.streamlit/config.toml
